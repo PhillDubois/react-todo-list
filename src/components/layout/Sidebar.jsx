@@ -1,47 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaChevronDown,
   FaInbox,
   FaRegCalendar,
   FaRegCalendarAlt,
 } from "react-icons/fa";
+import { useSelectedProjectValue } from "../../context";
+import { Projects } from "../Projects";
+import { AddProject } from "../AddProject";
 
-export const Sidebar = () => (
-  <div className="sidebar" data-testid="sidebar">
-    {/* Generics */}
+export const Sidebar = () => {
+  const { setSelectedProject } = useSelectedProjectValue;
+  const [active, setActive] = useState("inbox");
+  const [showProjects, setProjects] = useState(true);
 
-    <ul className="sidebar__generic">
-      <li className="inbox" data-testid="inbox">
+  return (
+    <div className="sidebar" data-testid="sidebar">
+      {/* Generics */}
+
+      <ul className="sidebar__generic">
+        <li className="inbox" data-testid="inbox">
+          <span>
+            <FaInbox />
+          </span>
+          <span>Inbox</span>
+        </li>
+        <li className="today" data-testid="today">
+          <span>
+            <FaRegCalendar />
+          </span>
+          <span>Today</span>
+        </li>
+        <li className="next_7" data-testid="next_7">
+          <span>
+            <FaRegCalendarAlt />
+          </span>
+          <span>Next 7 days</span>
+        </li>
+      </ul>
+
+      {/* Projects */}
+
+      <div className="sidebar__middle">
         <span>
-          <FaInbox />
+          <FaChevronDown />
         </span>
-        <span>Inbox</span>
-      </li>
-      <li className="today" data-testid="today">
-        <span>
-          <FaRegCalendar />
-        </span>
-        <span>Today</span>
-      </li>
-      <li className="next_7" data-testid="next_7">
-        <span>
-          <FaRegCalendarAlt />
-        </span>
-        <span>Next 7 days</span>
-      </li>
-    </ul>
+        <h2>Projects</h2>
+      </div>
 
-    {/* Projects */}
+      <ul className="sidebar__projects">{showProjects && <Projects />}</ul>
 
-    <div className="sidebar__middle">
-      <span>
-        <FaChevronDown />
-      </span>
-      <h2>Projects</h2>
+      {showProjects && <AddProject />}
     </div>
-
-    <ul className="sidebar__projects">Projects will be here!</ul>
-
-    {/* TODO: Add Project Component */}
-  </div>
-);
+  );
+};
