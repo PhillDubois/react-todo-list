@@ -253,7 +253,7 @@ header {
   ============================================ */
 .sidebar {
   @include no-select();
-  width: 400px;
+  width: 266px;
   height: calc(100vh);
   padding-top: 74px;
   position: fixed;
@@ -426,7 +426,7 @@ header {
   position: relative;
 
   &__inner {
-    // @include box-overlay();
+    @include box-overlay();
     z-index: 99;
     width: 200px;
     padding: 10px;
@@ -469,7 +469,7 @@ header {
 .tasks {
   width: 656px;
   background-color: white;
-  margin-left: 400px;
+  margin-left: 266px;
   border-right: $generic-border;
   min-height: calc(100vh);
   vertical-align: top;
