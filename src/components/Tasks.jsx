@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CheckBox from "./Checkbox";
+import { Checkbox } from "./Checkbox";
 import { AddTask } from "./AddTask";
 import { useTasks } from "../hooks";
 import { collatedTasks } from "../constants";
@@ -37,7 +37,7 @@ export const Tasks = () => {
       <ul className="tasks__list">
         {tasks.map((task) => (
           <li key={`${task.id}`}>
-            <CheckBox id={task.id} taskDesc={task.task} />
+            <Checkbox id={task.id} taskDesc={task.task} />
             <span>{task.task}</span>
           </li>
         ))}
